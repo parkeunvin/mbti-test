@@ -43,7 +43,7 @@
             [Step 01] 초기화
             문제 번호는 0번으로 초기화, 문제와 답변 JSON으로 구성하기 
         */
-
+        let no = 0;
         const questionList = [
             {
                 "title": "회사에 출근한 첫날, 기분이 어떤가?", 
@@ -117,55 +117,76 @@
                 "A": "우선, 저축할 돈부터 미리 빼두고 생활비 안에서 사고 싶은 것을 산다",
                 "B": "수고한 나에게 박수를! 나를 위한 금융치료에 나선다"
             }
-        ];
+        ]
 
         /* 
             [Step 02] 다음 문제로 이동
-            ㄴ no 값을 증가시키고
+             ㄴ no 값을 증가시키고
                 ㄴ no 값이 마지막 질문을 넘어갔다면 결과 페이지로 이동,
                 ㄴ 아니면 다음 문제를 출력
         */
         function next() {
-        
+            no++;
+            
             /* 
                 [Step 03] no 값이 마지막 질문을 넘어갔을 때
-                ㄴ MBTI를 계산하고 결과 페이지(result.html)로 이동
-                ㄴ 이동할 때 MBTI 결과를 파라미터로 전달
-
-                [Step 04] no 값이 마지막 질문을 넘어가지 않았다면
-                ㄴ 다음 문제 출력
+                 ㄴ MBTI를 계산하고 결과 페이지(result.html)로 이동
+                 ㄴ 이동할 때 MBTI 결과를 파라미터로 전달
             */
-  
+            if(no > questionList.length - 1) {
+                var mbti = "";
+                ($("#EI").val() < 2) ? mbti+="I" : mbti+="E";
+                ($("#SN").val() < 2) ? mbti+="N" : mbti+="S";
+                ($("#TF").val() < 2) ? mbti+="F" : mbti+="T";
+                ($("#JP").val() < 2) ? mbti+="P" : mbti+="J";
+                console.log("mbti: " + mbti);
 
+                location.href = 'result.html?mbti=' + mbti;
+            } else {
+                render();
+            }
         }
 
         /* 
-            [Step 05] 화면에 문제 출력
-            ㄴ 문제와 답변은 문제 데이터(questionList)에 있는 데이터 이용
+            [Step 04] 문제 출력
+             ㄴ 문제와 답변은 문제 데이터(questionList)에 있는 데이터 이용
         */
         function render() {
-
+            $("#no").html(no+1);
+            $("#title").html(questionList[no]["title"]);
+            $("#type").val(questionList[no]["type"]);
+            $("#A").html(questionList[no]["A"]);
+            $("#B").html(questionList[no]["B"]);
         }
 
         /* 
-            [Step 06] 점수를 추가하는 함수
-            ㄴ 현재 type이 무엇인지 가져오고,
-            ㄴ type에 해당하는 값을 가져옴 (EI라면 #EI의 값을 가져옴)
-            ㄴ type에 해당하는 값에 1을 더하고, 다시 type에 값으로 지정
+            [Step 05] 점수를 추가하는 함수
+             ㄴ 현재 type이 무엇인지 가져오고,
+             ㄴ type에 해당하는 값을 가져옴 (EI라면 #EI의 값을 가져옴)
+             ㄴ type에 해당하는 값에 1을 더하고, 다시 type에 값으로 지정
         */
-        const addScore = function() {
-
+        const addScore = () => {
+            var type = $("#type").val();
+            var typeValue = $("#"+type).val();
+            $("#"+type).val(parseInt(typeValue)+1);
         }
 
         /* 
-            [Step 07] test.html 페이지에 처음 들어왔을 때
-            ㄴ 화면에 문제 출력
-            ㄴ A 버튼을 클릭하면 점수 증가 후 다음 문제로 이동
-            ㄴ B 버튼을 클릭하면 다음 문제로 이동
+            [Step 06] test.html 페이지에 처음 들어왔을 때
+             ㄴ 문제 출력
+             ㄴ A 버튼을 클릭하면 점수 증가 후 다음 문제로 이동
+             ㄴ B 버튼을 클릭하면 다음 문제로 이동
         */
-        $(document).ready(function() {
-        
+        $(document).ready(function(){
+            render();
+            $("#A").on("click", () => {
+                addScore()
+                next();
+            });
+            $("#B").on("click", () => {
+                next();
+            });
         });
-  </script>
+    </script>
 </body>
 </html>

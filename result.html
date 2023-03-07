@@ -69,11 +69,12 @@
             URL에서 mbti 결과를 가지고 와서, 해당하는 mbti 출력
         */
         $(document).ready(function(){
-            var mbti = window.localStorage.getItem("mbti");
-            console.log(mbti);
-            document.getElementById('mbtiType').innerHTML=result[mbti]["mbtiType"];
-            document.getElementById('explain').innerHTML=result[mbti]["explain"];
+            const params = new URL(location.href).searchParams;
+            const mbti = params.get('mbti');
 
+            $("#img").attr("src", 'img/' + mbti + '.png');
+            $("#mbtiType").html(result[mbti]["mbtiType"]);
+            $("#explain").html(result[mbti]["explain"]);
         });
     </script>
 </body>

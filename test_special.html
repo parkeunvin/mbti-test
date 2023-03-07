@@ -19,17 +19,6 @@
         <button id="A" class="btn btn-primary">답변 A</button> 
         <button id="B" class="btn btn-primary">답변 B</button>
     </div>
-
-    <!-- 테스트 하는 동안에는 type="text"로 값 확인하기 -->
-    <div class="mt30">
-      현재 tpye: <input id="type" type="text" value="EI"><br>
-      EI: <input type="text" id="EI" value="0"><br>
-      SN: <input type="text" id="SN" value="0"><br>
-      TF: <input type="text" id="TF" value="0"><br>
-      JP: <input type="text" id="JP" value="0">
-    </div>
-    <!-- 테스트를 마치고 type="text"를 type="hidden"으로 변경하기 -->
-
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
@@ -38,12 +27,7 @@
             HTML 코드는 수정 금지
             아래에만 코드를 추가해 로직 구현하기
         */
-
-        /* 
-            [Step 01] 초기화
-            문제 번호는 0번으로 초기화, 문제와 답변 JSON으로 구성하기 
-        */
-
+        
         const questionList = [
             {
                 "title": "회사에 출근한 첫날, 기분이 어떤가?", 
@@ -117,55 +101,7 @@
                 "A": "우선, 저축할 돈부터 미리 빼두고 생활비 안에서 사고 싶은 것을 산다",
                 "B": "수고한 나에게 박수를! 나를 위한 금융치료에 나선다"
             }
-        ];
-
-        /* 
-            [Step 02] 다음 문제로 이동
-            ㄴ no 값을 증가시키고
-                ㄴ no 값이 마지막 질문을 넘어갔다면 결과 페이지로 이동,
-                ㄴ 아니면 다음 문제를 출력
-        */
-        function next() {
-        
-            /* 
-                [Step 03] no 값이 마지막 질문을 넘어갔을 때
-                ㄴ MBTI를 계산하고 결과 페이지(result.html)로 이동
-                ㄴ 이동할 때 MBTI 결과를 파라미터로 전달
-
-                [Step 04] no 값이 마지막 질문을 넘어가지 않았다면
-                ㄴ 다음 문제 출력
-            */
-  
-
-        }
-
-        /* 
-            [Step 05] 화면에 문제 출력
-            ㄴ 문제와 답변은 문제 데이터(questionList)에 있는 데이터 이용
-        */
-        function render() {
-
-        }
-
-        /* 
-            [Step 06] 점수를 추가하는 함수
-            ㄴ 현재 type이 무엇인지 가져오고,
-            ㄴ type에 해당하는 값을 가져옴 (EI라면 #EI의 값을 가져옴)
-            ㄴ type에 해당하는 값에 1을 더하고, 다시 type에 값으로 지정
-        */
-        const addScore = function() {
-
-        }
-
-        /* 
-            [Step 07] test.html 페이지에 처음 들어왔을 때
-            ㄴ 화면에 문제 출력
-            ㄴ A 버튼을 클릭하면 점수 증가 후 다음 문제로 이동
-            ㄴ B 버튼을 클릭하면 다음 문제로 이동
-        */
-        $(document).ready(function() {
-        
-        });
-  </script>
+        ]
+    </script>
 </body>
 </html>
